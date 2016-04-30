@@ -40,7 +40,7 @@ function read(file::FortIOStream, args...)
     end
 end
 
-function read!{T,N}(file::FortIOStream, a::Array{T,N})
+function read!{T,N}(file::FortIOStream, a::AbstractArray{T,N})
     ni = length(a)
     read_record(file, ni*sizeof(T)) do file
         for i = 1:ni
@@ -59,7 +59,7 @@ function write(file::FortIOStream, args...)
     end
 end
 
-function write{T,N}(file::FortIOStream, a::Array{T,N})
+function write{T,N}(file::FortIOStream, a::AbstractArray{T,N})
     ni = length(a)
     write_record(file, ni*sizeof(T)) do file
         for i = 1:ni
